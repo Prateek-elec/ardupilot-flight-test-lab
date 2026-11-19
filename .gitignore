@@ -1,0 +1,26 @@
+# Large or third-party data (bring your own)
+logs/
+bench/px4_logs/
+sitl/bin/
+sitl/ardupilot_ref/
+sitl/run_*/
+hil/results/
+hil/data/
+# Raw logs and generated data
+*.ulg
+*.bin
+*.BIN
+*.tlog
+*.DAT
+*.mat
+# Build outputs
+*.exe
+*.dll
+*.p
+*.pyc
+__pycache__/
+*.asv
+slprj/
+Thumbs.db
+desktop.ini
+.claude/

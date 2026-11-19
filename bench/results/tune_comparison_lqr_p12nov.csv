@@ -1,0 +1,14 @@
+Row,A flown12Nov,B tuneC,C LQR
+Roll/pitch step settle (ms),700,700,600
+Roll/pitch step overshoot (%),0.6,0.0,1.2
+Roll/pitch step tracking RMS (deg),0.19,0.19,0.37
+Yaw: achieved / commanded (deg/s),170 / 149,146 / 127,155 / 141
+Yaw 90% rise time (s),0.50,0.41,0.43
+Yaw rate tracking RMS (deg/s),55.0,25.4,37.1
+Altitude hold error RMS (m),0.049,0.049,0.048
+Loiter position error RMS (m),0.19,0.19,0.18
+Loiter position error max (m),0.43,0.45,0.43
+Motor noise roll (%),1.69,1.59,1.06
+Motor noise pitch (%),1.28,1.17,1.42
+Motor noise yaw (%),0.03,0.04,0.03
+Controller replica fit roll/pitch/yaw (%),99/98/99,98/98/98,99/99/99

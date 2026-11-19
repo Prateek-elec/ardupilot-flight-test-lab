@@ -1,0 +1,45 @@
+# mini_drone - post-crash fix parameters (12 Nov 2026)
+# From the review of logs 10 Nov 17-38-46 (crash), 10 Nov 18-09-06, 11 Nov 17-30-20, 11 Nov 17-39-59.
+# Load in Mission Planner: CONFIG > Full Parameter List > Load from file > Write Params > REBOOT.
+# Only these parameters change; everything else keeps its current value.
+# Do the mechanical checks in the notes file BEFORE flying - parameters cannot fix a loose motor.
+#
+# ---- Current sensor and compass ----
+# Current reads 13-14 A with motors stopped and DROPS when they spin: the CURR pin is not a real
+# current signal. Voltage-only monitoring (was 4 = voltage + current).
+BATT_MONITOR,3
+# 2S 5000 mAh pack (was 2800)
+BATT_CAPACITY,5000
+# Compass motor compensation used that false current (was 2 = current-based). Off until a real
+# current sensor is wired and CompassMot is redone.
+COMPASS_MOTCT,0
+#
+# ---- Motors ----
+# Measured hover throttle in the 10 Nov flight: 0.467 (was set to 0.2 on 11 Nov)
+MOT_THST_HOVER,0.47
+# keep learning hover throttle in flight
+MOT_HOVER_LEARN,2
+# thrust curve used for the validated MATLAB model and tune tests (was 0.45 on 11 Nov)
+MOT_THST_EXPO,0.49
+#
+# ---- Rate tune: the 10 Nov flying tune + Tune C (SITL-verified) ----
+# roll/pitch values were reset on 11 Nov (P 0.13, D 0.004); restored here
+ATC_RAT_RLL_P,0.135
+ATC_RAT_RLL_I,0.135
+ATC_RAT_RLL_D,0.0044
+ATC_RAT_PIT_P,0.135
+ATC_RAT_PIT_I,0.135
+# Tune C: half the pitch D -> 44% less pitch motor noise, gain margin 6.8 -> 11 dB
+ATC_RAT_PIT_D,0.0034
+# Tune C: yaw P 0.135 -> 0.34, yaw I = P/10 (11 Nov had yaw I 0.135, too high)
+ATC_RAT_YAW_P,0.34
+ATC_RAT_YAW_I,0.034
+# gyro filter used with this tune (was 91 on 11 Nov)
+INS_GYRO_FILTER,74
+#
+# ---- Logging for the next flight ----
+# 400 Hz attitude + rate + PID logs
+LOG_BITMASK,180223
+LOG_FILE_DSRMROT,1
+# raw IMU batch sampling: gives the vibration spectrum needed to set the harmonic notch
+INS_LOG_BAT_MASK,1

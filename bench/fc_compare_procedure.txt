@@ -1,0 +1,26 @@
+HEAD-TO-HEAD FLIGHT CONTROLLER TEST (same drone, two boards)
+=============================================================
+Goal: the only difference between the two logs is the flight controller.
+
+Keep identical for both boards
+  - Frame, motors, props (same props, balanced), ESC, battery (charged to the same voltage)
+  - FC mounting: same soft-mount pads, same position on the frame
+  - GPS/compass module and its position
+  - ArduCopter version (same major version on both, e.g. 4.6.x)
+  - Tune: copy ATC_*, PSC_*, MOT_*, INS_GYRO_FILTER, INS_ACCEL_FILTER from one board to the other
+  - Logging: LOG_BITMASK 180223, LOG_DISARMED 1 (for the bench part), LOG_FILE_DSRMROT 1
+
+Calibrate on each board before the test
+  - Accelerometer (6-point) and level, compass outdoors, radio, ESC/motor test
+
+Test sequence (fly the same way on both, calm wind, same place)
+  1. Bench, disarmed:  drone still on a flat surface for 60 s  -> sensor noise floor
+  2. Arm, take off in ALT_HOLD to ~3 m, hover hands-off 60 s     -> hover, vibration, alt hold
+  3. 4 roll steps and 4 pitch steps (full stick for ~1 s each)   -> attitude response
+  4. 2 yaw turns of 180 deg                                     -> yaw response
+  5. LOITER 60 s                                                -> position hold, EKF
+  6. Land, disarm, wait 20 s                                    -> second noise-floor sample
+
+Then in MATLAB
+  cd(fullfile(userpath, "fc_test", "bench"))
+  T = fc_compare(["my_fc.bin", "pixhawk.bin"], ["Your FC", "Pixhawk 2.4.8"]);

@@ -1,0 +1,13 @@
+Axis,Case,PredTrackErrRMS_degps,ModelFitToMeasured_pct
+roll,as flown 12 Nov,5.95247172941761,71.0194999407731
+roll,Tune C (post_crash_fix),5.78338317626684,NaN
+roll,LQR step 1,8.57942357151218,NaN
+roll,LQR target,8.57942357151218,NaN
+pitch,as flown 12 Nov,3.76506227649789,37.2319219226979
+pitch,Tune C (post_crash_fix),3.80738110372273,NaN
+pitch,LQR step 1,4.61737532305803,NaN
+pitch,LQR target,4.61737532305803,NaN
+yaw,as flown 12 Nov,8.9092559003384,25.7946304274419
+yaw,Tune C (post_crash_fix),4.0742293108545,NaN
+yaw,LQR step 1,6.32698555049552,NaN
+yaw,LQR target,5.44507997734926,NaN

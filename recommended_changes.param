@@ -1,0 +1,29 @@
+# mini_drone - recommended parameter changes (10 Nov 2026)
+# Load in Mission Planner: CONFIG > Full Parameter List > Load from file > Write Params > reboot.
+# Only the parameters below change; everything else keeps its current value.
+#
+# Safety / correctness (from the flight-log review)
+# pitch stick forward made the drone fly backward
+RC2_REVERSED,1
+# all pre-arm checks on (it was partly disabled)
+ARMING_CHECK,1
+# voltage only: CURR pin is not connected (fake 13 A reading)
+BATT_MONITOR,3
+# 2S 5000 mAh pack (was 2800)
+BATT_CAPACITY,5000
+# 2S Li-ion thresholds (for a LiPo pack use 7.4 / 7.0 / 6.6 instead)
+BATT_ARM_VOLT,7.2
+BATT_LOW_VOLT,6.6
+BATT_CRT_VOLT,6.2
+#
+# Tune C, verified on ArduCopter SITL with your vibration level
+# yaw P was 0.135: yaw 43% faster, 46% less tracking error
+ATC_RAT_YAW_P,0.34
+# yaw I = P/10 (ArduPilot convention)
+ATC_RAT_YAW_I,0.034
+# pitch D was 0.00677: 44% less pitch motor noise, gain margin 6.8 -> 11 dB
+ATC_RAT_PIT_D,0.0034
+#
+# Logging for the next test flight (400 Hz attitude + PID logs, one log per flight)
+LOG_BITMASK,180223
+LOG_FILE_DSRMROT,1
