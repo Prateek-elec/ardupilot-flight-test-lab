@@ -1,4 +1,4 @@
-# Your FC HIL Simulation Runbook
+# HIL Simulation Runbook
 
 2026-11-10 · Hardware-in-the-loop test procedure for the flight controller under test.
 Online copy (with the architecture diagram): https://claude.ai/artifact/3t96mysamp6muJYDbBfM8Z

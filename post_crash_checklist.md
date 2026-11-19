@@ -1,4 +1,4 @@
-# Your FC post-crash checklist (12 Nov 2026)
+# Post-crash checklist (12 Nov 2026)
 
 Do these in order. Props OFF until step 6.
 
