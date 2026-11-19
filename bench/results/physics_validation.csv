@@ -1,0 +1,12 @@
+Test,Reference,Measured,Limit,Result
+V1 Free fall 2 s,analytic,"err 9.1e-13 m","< 1e-6 m",PASS
+V2 Constant torque,analytic,"rel err 8.7e-15","< 1e-9",PASS
+V3 Torque-free precession,analytic (Euler eqs),"rel err 2.7e-09","< 1e-6",PASS
+V4 Energy & momentum,conservation laws,"dE 7.0e-14, dH 7.7e-12","< 1e-7",PASS
+V4 Dzhanibekov effect,rigid-body theory,"8 flips in 20 s",">= 2 (unstable axis)",PASS
+V5 Hover equilibrium,trim from thrust curve,"dz 0.0e+00 m, att 0.0e+00 deg","< 0.01 m, < 1e-6 deg",PASS
+V6 Motor order & directions,ArduPilot AP_MotorsMatrix QuadX,"4/4 motors checked","all signs match",PASS
+V7 Rigid body vs 6DOF block,MathWorks Aerospace Blockset,"dX 6e-12 m, dV 2e-12 m/s, dAtt 2e-12 deg","< 1e-6",PASS
+V8 Sign/shape vs ArduPilot model,ArduPilot SIM_multicopter.m,"min corr 0.997","> 0.97",PASS
+V8 Magnitude vs ArduPilot model,ArduPilot SIM_multicopter.m,"peak ratio 0.96-0.96","within 10 %",PASS
+V8 Vertical response,ArduPilot SIM_multicopter.m,"2.31 vs 2.42 m/s^2","within 10 %",PASS

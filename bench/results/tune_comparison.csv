@@ -1,0 +1,14 @@
+Row,A current,B yawP,C yawP pitchD
+Roll/pitch step settle (ms),625,625,625
+Roll/pitch step overshoot (%),0.9,0.9,0.8
+Roll/pitch step tracking RMS (deg),0.30,0.30,0.31
+Yaw: achieved / commanded (deg/s),156 / 160,147 / 140,147 / 140
+Yaw 90% rise time (s),0.77,0.44,0.44
+Yaw rate tracking RMS (deg/s),59.5,32.2,32.2
+Altitude hold error RMS (m),0.049,0.051,0.050
+Loiter position error RMS (m),0.19,0.19,0.18
+Loiter position error max (m),0.43,0.43,0.43
+Motor noise roll (%),1.39,1.22,1.22
+Motor noise pitch (%),1.65,1.71,0.92
+Motor noise yaw (%),0.04,0.06,0.06
+Controller replica fit roll/pitch/yaw (%),99/98/99,98/98/98,98/98/98

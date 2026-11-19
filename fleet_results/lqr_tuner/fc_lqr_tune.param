@@ -1,0 +1,23 @@
+# Your FC - rate/angle gains from bench/lqr_pid_tuner.m (LQR on the 12 Nov flight-identified plant)
+# Design delay: replay. Required: PM >= 45 deg, GM >= 6 dB, Monte-Carlo fail <= 20 %.
+# STEP 1 values: increases limited to x1.5 of the flown tune; reductions go straight in.
+# Fly a STABILIZE/ALT_HOLD hover 1-2 min, check the log, then move to the LQR target (comments).
+# Load in Mission Planner: CONFIG > Full Parameter List > Load from file > Write Params.
+#
+# roll target: P 0.050  I 0.074  D 0.0032   (flown: P 0.130 I 0.140 D 0.0040), design delay 6.0 ms
+ATC_RAT_RLL_P,0.050
+ATC_RAT_RLL_I,0.074
+ATC_RAT_RLL_D,0.0032
+ATC_ANG_RLL_P,4.50
+# pitch target: P 0.072  I 0.108  D 0.0046   (flown: P 0.130 I 0.140 D 0.0040), design delay 6.0 ms
+ATC_RAT_PIT_P,0.072
+ATC_RAT_PIT_I,0.108
+ATC_RAT_PIT_D,0.0046
+ATC_ANG_PIT_P,4.50
+# yaw: low confidence (identification coherent only 1.5-2.3 Hz)
+# yaw target: P 0.236  I 0.073  D 0.0000   (flown: P 0.130 I 0.135 D 0.0000), design delay 7.0 ms
+ATC_RAT_YAW_P,0.195
+ATC_RAT_YAW_I,0.073
+ATC_RAT_YAW_D,0.0000
+ATC_ANG_YAW_P,4.50
+# D filter assumed 20 Hz, target filter 20 Hz (ATC_RAT_xxx_FLTD / FLTT): keep those as set.
