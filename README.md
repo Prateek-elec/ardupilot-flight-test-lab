@@ -2,7 +2,9 @@
 
 <img src="docs/banner.png" alt="ArduPilot Flight Test Lab" width="100%"/>
 
-**A MATLAB toolkit that turns ArduPilot flight logs into a better-flying drone. It identifies your airframe from real flight data, designs PID gains with LQR, proves them on real ArduCopter firmware (SITL) and on your actual board (HIL), then writes the `.param` file to load.**
+**My drone crashed. The flight log knew why before I did.**
+
+So I built a MATLAB lab that reads ArduPilot flight logs, finds the problem, identifies the airframe, designs better PID gains with LQR, proves them on real ArduCopter firmware (SITL) and on the real board (HIL), then writes the `.param` file to load.
 
 ![MATLAB](https://img.shields.io/badge/MATLAB-R2026a-E16737?style=for-the-badge)
 ![ArduPilot](https://img.shields.io/badge/ArduPilot-ArduCopter-0B8ED8?style=for-the-badge&logo=ardupilot&logoColor=white)
@@ -21,6 +23,14 @@
 - 🎯 **Control theory, not guesswork:** the rate loop is identified from 400 Hz flight data, then LQR (LQI) designs the PID gains with phase- and gain-margin checks.
 - 🔌 **Tested on the real board:** two-level hardware-in-the-loop, from I/O checks to full simulation-on-hardware missions.
 - 📊 **Benchmark your board:** compare noise and tracking against 11 commercial flight controllers using public flight logs.
+
+## The story
+
+1. 💥 **The crash:** a 2S quad went down mid-flight.
+2. 🔍 **The log review** (`fc_log_analysis`, `logs_review`) showed vibration jumping **~500×** (0.04 → 19 m/s²) right before it. The cause was mechanical: motor screws. That became the [post-crash checklist](post_crash_checklist.md).
+3. 🧠 **Same logs, new tune:** the rate loop was identified from 400 Hz flight data and LQR designed new PID gains with proper margins.
+4. 🧪 **Proved before flying:** the new tune was flown on ArduCopter SITL with turbulence and vibration, then on the real board in HIL.
+5. 📜 **One command for next time:** all of it is packaged so any ArduPilot log goes in and a tuned `.param` comes out.
 
 ## The pipeline
 
