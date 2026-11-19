@@ -16,7 +16,7 @@ So I built a MATLAB lab that reads ArduPilot flight logs, finds the problem, ide
 
 ---
 
-## 🔥 Why it hits different
+## Highlights
 
 - 📜 **Flight log in, tuned drone out:** pick a DataFlash `.BIN`, press Tune, load the `.param` it writes.
 - 🧪 **Real firmware, simulated physics:** ArduCopter SITL flies a validated MATLAB 6-DOF quad model.
@@ -116,7 +116,7 @@ Bench-test with **props off**, check the generated parameters before flying, and
 
 <div align="center">
 
-### If this made you go *"wait, that's sick"* 👀
+### Found this useful?
 
 **Drop a ⭐ so more drone builders find it, and share it with someone fighting their PID tune.**
 
