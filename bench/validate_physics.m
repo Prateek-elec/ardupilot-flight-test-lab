@@ -108,7 +108,13 @@ if opts.Simulink
     end
 end
 
-%% V8 ArduPilot reference multicopter physics
+%% V8 ArduPilot reference multicopter physics (needs ArduPilot's MATLAB SITL example files)
+refFile = fullfile(fileparts(here), "sitl", "ardupilot_ref", "Copter_Hexsoon.mat");
+if ~isfile(refFile)
+    fprintf(['\nV8 skipped: %s not found.\n' ...
+        '   Copy the MATLAB SITL example files from the ArduPilot repository ' ...
+        '(libraries/SITL/examples/JSON/MATLAB) into sitl/ardupilot_ref to run this check.\n'], refFile);
+else
 [r8, fig8] = compareArduPilotRef(here, opts.OutDir, vis);
 for i = 1:4
     fprintf('V8 %s: rate response correlation roll %.3f pitch %.3f yaw %.3f | peak ratio %.2f %.2f %.2f\n', ...
@@ -121,6 +127,7 @@ R = add(R, "V8 Sign/shape vs ArduPilot model", "ArduPilot SIM_multicopter.m", sp
 R = add(R, "V8 Magnitude vs ArduPilot model", "ArduPilot SIM_multicopter.m", sprintf('peak ratio %.2f-%.2f', min(r8.ratio(:)), max(r8.ratio(:))), "within 10 %", okRat);
 R = add(R, "V8 Vertical response", "ArduPilot SIM_multicopter.m", sprintf('%.2f vs %.2f m/s^2', r8.climbMine, r8.climbRef), "within 10 %", abs(r8.climbMine/r8.climbRef - 1) < 0.10);
 if ~isempty(fig8) && strcmp(vis, 'off'), delete(fig8); end
+end
 
 %% report
 fprintf('\n==================== PHYSICS VALIDATION REPORT ====================\n');

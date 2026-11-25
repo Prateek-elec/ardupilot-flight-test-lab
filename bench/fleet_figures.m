@@ -1,7 +1,7 @@
 function fleet_figures()
 %FLEET_FIGURES Report figures from fleet.mat and loop_margins.csv.
 here = fileparts(fileparts(mfilename('fullpath'))); out = fullfile(here, "fleet_results");
-S = load(fullfile(out, "fleet.mat")); F = S.F; fl = F.flights;
+F = lab_campaign_data(); fl = F.flights;
 MT = readtable(fullfile(out, "loop_margins.csv"), 'TextType', 'string');
 or = [0.80 0.45 0.05]; gr = [0.55 0.58 0.63];
 
@@ -11,7 +11,7 @@ for i = 1:numel(fl)
     p = split(fl(i).id); d = p(1); fn = p(end);
     lab(i) = string(str2double(extractAfter(d, 8))) + " Nov " + fn;
 end
-f = figure('Visible', 'off', 'Color', 'w', 'Position', [40 40 1400 760]); theme(f, 'light');
+f = figure('Visible', 'off', 'Color', 'w', 'Position', [40 40 1400 760]); try, theme(f, 'light'); catch, end
 tl = tiledlayout(f, 2, 3, 'TileSpacing', 'compact');
 title(tl, "Your FC flight performance, every flight (crash and upset windows removed)", 'FontWeight', 'bold');
 pp = {'vibe_p95', 'Vibration, 95th percentile (m/s^2)', 30; 'att_rms_pitch', 'Pitch attitude error RMS (deg)', 3; ...
@@ -30,7 +30,7 @@ subtitle(tl, "Orange: 12 Nov flights after the mechanical fixes. Grey: earlier f
 exportgraphics(f, fullfile(out, "fig_flights.png"), 'Resolution', 140); delete(f);
 
 % ---------- identification + margins
-f = figure('Visible', 'off', 'Color', 'w', 'Position', [40 40 1400 700]); theme(f, 'light');
+f = figure('Visible', 'off', 'Color', 'w', 'Position', [40 40 1400 700]); try, theme(f, 'light'); catch, end
 tl = tiledlayout(f, 2, 2, 'TileSpacing', 'compact');
 title(tl, "Rate dynamics identified from 400 Hz flight data, and rate-loop margins", 'FontWeight', 'bold');
 axn = ["roll", "pitch"];

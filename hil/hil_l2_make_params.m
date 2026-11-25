@@ -12,7 +12,7 @@ arguments
     opts.LogFile (1,1) string = fullfile(fileparts(mfilename('fullpath')), "data", "flight_2026-11-09.bin")
     opts.TuneC (1,1) logical = true
     opts.EKF (1,1) string {mustBeMember(opts.EKF, ["ekf3", "sim"])} = "ekf3"   % ekf3 = real EKF3 runs on the board
-    opts.Home (1,4) double = [-35.363262 149.165237 300 0]
+    opts.Home (1,4) double = [-35.363262 149.165237 584 353]   % ArduPilot's default SITL site (CMAC)
 end
 here = fileparts(mfilename('fullpath'));
 outDir = fullfile(here, "l2"); if ~isfolder(outDir), mkdir(outDir); end

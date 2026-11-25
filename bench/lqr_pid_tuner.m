@@ -69,7 +69,7 @@ end
 warning('off', 'all');
 here = fileparts(fileparts(mfilename('fullpath')));
 if isempty(fieldnames(opts.F))
-    S = load(fullfile(here, "fleet_results", "fleet.mat")); F = S.F;
+    F = lab_campaign_data();
 else
     F = opts.F;
 end

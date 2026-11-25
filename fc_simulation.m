@@ -74,6 +74,12 @@ fprintf('  INS_GYRO_FILTER=%g Hz, loop 400 Hz, assumed output latency %.1f ms\n'
 
 %% ---------------- Identify each axis ----------------
 tr = tsec(rate); inW = tr >= win(1) & tr <= win(2);
+fsRate = 1 / median(diff(tr));
+if fsRate < 200 || nnz(inW) < 400
+    error('fc_sim:lowRate', ['Rate data in this log is logged at %.0f Hz (%d samples in the flight window); ' ...
+        'identification needs 400 Hz. Set LOG_BITMASK = 180223 (adds fast rate/PID logging) and fly again.'], ...
+        fsRate, nnz(inW));
+end
 ta = tsec(att);  inA = ta >= win(1) & ta <= win(2);
 des = {rate.RDes, rate.PDes, rate.YDes}; act = {rate.R, rate.P, rate.Y}; out = {rate.ROut, rate.POut, rate.YOut};
 angDes = {att.DesRoll, att.DesPitch, att.DesYaw}; ang = {att.Roll, att.Pitch, att.Yaw};

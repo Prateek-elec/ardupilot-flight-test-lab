@@ -4,7 +4,7 @@ function T = pid_design_space()
 %Also checks robustness (K +-30 %, motor lag +-30 %, delay +-50 %, 200 cases).
 %I = P (ArduPilot roll/pitch convention), D filter 20 Hz.
 here = fileparts(fileparts(mfilename('fullpath')));
-S = load(fullfile(here, "fleet_results", "fleet.mat")); ID = S.F.ID;
+F = lab_campaign_data(); ID = F.ID;
 s = tf('s'); warning('off', 'all');
 Pg = 0.06:0.01:0.20; Dg = 0.0010:0.0005:0.0070;
 ax = ["roll", "pitch"]; current = [0.13 0.004; 0.13 0.004]; tuneC = [0.135 0.0044; 0.135 0.0034];

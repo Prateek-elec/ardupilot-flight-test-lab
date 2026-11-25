@@ -1,6 +1,6 @@
 % run_tune_tests.m - fly candidate tunes on the real ArduCopter firmware (SITL)
 % with realistic vibration, gyro noise and turbulence, then compare.
-% In MATLAB:  cd(fullfile(userpath, "fc_test", "bench")); run_tune_tests
+% In MATLAB, from the bench folder:  run_tune_tests
 
 % Environment matched to the 9 Nov flight: VIBE on IMU1 ~ 3.6/2.4/13 m/s^2,
 % stronger gusts. Same random seed for every run -> identical conditions.

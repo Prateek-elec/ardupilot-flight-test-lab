@@ -7,7 +7,7 @@
 %   "p12nov_delay7ms" - same, plus 7 ms extra motor-command delay (worst-case delay test)
 %   "p9nov"           - the default quad_params calibration (297/224/36, 30 ms): ~45 % less
 %                       authority, an off-design robustness check
-% In MATLAB:  cd(fullfile(userpath, "fc_test", "bench")); run_lqr_sitl
+% In MATLAB, from the bench folder:  run_lqr_sitl
 
 here = fileparts(mfilename('fullpath'));
 G = readtable(fullfile(fileparts(here), "fleet_results", "lqr_tuner", "gains.csv"), 'TextType', 'string');

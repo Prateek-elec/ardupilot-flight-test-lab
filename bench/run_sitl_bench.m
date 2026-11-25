@@ -13,10 +13,10 @@ function out = run_sitl_bench(opts)
 %   out = run_sitl_bench(Wind=[3 0 0], Gusts=1.5);
 
 arguments
-    opts.LogFile (1,1) string = "logs\2026-11-09 16-30-17.bin"
+    opts.LogFile (1,1) string = lab_default_log()
     opts.Wind (1,3) double = [2 1 0]       % steady wind NED, m/s (blowing toward N/E)
     opts.Gusts (1,1) double = 1.0          % turbulence RMS, m/s
-    opts.Home (1,1) string = "-35.363262,149.165237,300,0"
+    opts.Home (1,1) string = "-35.363262,149.165237,584,353"   % ArduPilot's default SITL site (CMAC); set your own field here
     opts.Params = quad_params()
     opts.Python (1,1) string = fullfile(getenv('LOCALAPPDATA'), "Programs", "Python", "Python311", "python.exe")
     opts.ParamOverrides cell = {}          % {"ATC_RAT_YAW_P", 0.34; ...} applied on top of the log tune

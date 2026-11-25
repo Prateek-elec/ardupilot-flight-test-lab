@@ -16,7 +16,7 @@ arguments
     target (1,1) string
     opts.ParamFile (1,1) string = ""
     opts.Python (1,1) string = fullfile(getenv('LOCALAPPDATA'), "Programs", "Python", "Python311", "python.exe")
-    opts.Home (1,1) string = "-35.363262,149.165237,300,0"
+    opts.Home (1,1) string = "-35.363262,149.165237,584,353"   % ArduPilot's default SITL site (CMAC)
     opts.Timeout (1,1) double = 600
 end
 here = fileparts(mfilename('fullpath')); root = fileparts(here);

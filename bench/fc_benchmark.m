@@ -18,7 +18,7 @@ function B = fc_benchmark(opts)
 %   B = fc_benchmark();
 
 arguments
-    opts.OwnLog (1,1) string = "logs\2026-11-09 16-30-17.bin"
+    opts.OwnLog (1,1) string = lab_default_log()
     opts.Px4Dir (1,1) string = fullfile(fileparts(mfilename('fullpath')), "px4_logs", "ulg")
     opts.OutDir (1,1) string = fullfile(fileparts(mfilename('fullpath')), "results")
     opts.FromSaved (1,1) logical = false   % redraw from results\fc_benchmark.mat without re-reading logs

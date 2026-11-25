@@ -1,6 +1,6 @@
 % regen_report_figures.m - re-export every report figure in MATLAB's light
 % theme at print resolution (150 dpi), from saved results where possible.
-% In MATLAB:  cd(fullfile(userpath, "fc_test", "bench")); regen_report_figures
+% In MATLAB, from the bench folder:  regen_report_figures
 set(groot, 'defaultFigureCreateFcn', @(f, ~) lightTheme(f));
 set(groot, 'defaultAxesFontSize', 10);
 cleanupObj = onCleanup(@() set(groot, 'defaultFigureCreateFcn', ''));

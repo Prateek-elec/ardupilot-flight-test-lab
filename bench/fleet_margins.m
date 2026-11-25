@@ -4,7 +4,7 @@ function MT = fleet_margins()
 %   component-based delay (400 Hz loop 2.5 ms + ESC/DShot ~1 ms + filter group delay ~2.5 ms).
 %   Gain K and motor lag tm are the well-identified parameters (95-97 % gain fit).
 here = fileparts(fileparts(mfilename('fullpath')));
-S = load(fullfile(here, "fleet_results", "fleet.mat")); F = S.F;
+F = lab_campaign_data();
 ax = ["roll", "pitch"];
 cases = struct('name', {"component delay 6 ms", "identified delay (worst case)"}, 'tau', {0.006, NaN});
 rows = {};

@@ -169,7 +169,7 @@ python hil_params.py COM8 --load l2\hil.parm --reboot
 
 The second run must report no "NOT set" names.
 
-7. **Check in Mission Planner.** Connect: the HUD should show a level attitude, a simulated GPS fix and the home position -35.363262, 149.165237. Then disconnect.
+7. **Check in Mission Planner.** Connect: the HUD should show a level attitude, a simulated GPS fix and the home position -35.363262, 149.165237 (ArduPilot's default SITL site; change `Home` to use your own field). Then disconnect.
 8. **Fly the mission on the board** (MATLAB):
 
 ```matlab

@@ -12,6 +12,8 @@ So I built a MATLAB lab that reads ArduPilot flight logs, finds the problem, ide
 ![HIL](https://img.shields.io/badge/testing-SITL%20%2B%20HIL-22c55e?style=for-the-badge)
 ![License](https://img.shields.io/badge/license-MIT-22c55e?style=for-the-badge)
 
+**No MATLAB?** The log health check is also available as a free Python tool: [ArduPilot Log Doctor](https://github.com/Prateek-elec/ardupilot-log-doctor).
+
 </div>
 
 ---
@@ -67,18 +69,58 @@ So I built a MATLAB lab that reads ArduPilot flight logs, finds the problem, ide
 
 ## Quick start
 
-1. MATLAB **R2026a** with Control System Toolbox (LQR, margins). MATLAB Report Generator is optional, for PDF reports.
-2. Put your ArduPilot DataFlash logs in a `logs/` folder next to this README.
-3. Open the tuner:
-   ```matlab
-   addpath(genpath(pwd))
-   fc_tuner_app
-   ```
-   Or run the full calibrated simulation on one log:
-   ```matlab
-   S = fc_simulation("logs/my_flight.BIN");
-   ```
-4. **Windows launcher (optional):** `launcher/build_launcher.bat` builds a small `FC Tuner.exe` that opens the tuner without the MATLAB desktop. `Open_FC_Tuner.bat` does the same without building anything.
+### 1. Before you fly: log at 400 Hz
+
+The tuner and the simulation identify your airframe from fast rate data. ArduPilot's default logging is too slow for that, so set this once in Mission Planner (Config → Full Parameter List), then fly a normal 3–5 minute flight with some stick inputs:
+
+```text
+LOG_BITMASK = 180223      (adds ATTITUDE_FAST and PID logging at 400 Hz)
+```
+
+The log health check works with any log; only tuning and simulation need the 400 Hz data.
+
+### 2. What you need
+
+| | Needed for |
+|---|---|
+| **MATLAB** (tested on R2026a) | everything |
+| **UAV Toolbox** | reading `.BIN` logs (`ardupilotreader`): nearly every tool |
+| **Control System Toolbox** | LQR design, stability margins |
+| **Signal Processing Toolbox** | system identification |
+| **Statistics and Machine Learning Toolbox** | the log health check |
+| Simulink + Aerospace Blockset *(optional)* | one cross-check in `validate_physics` |
+| MATLAB Report Generator *(optional)* | PDF tuning reports |
+
+### 3. Run it
+
+Put your `.BIN` logs in the `logs/` folder, open MATLAB in this folder, then:
+
+```matlab
+addpath(genpath(pwd))
+```
+
+| I want to… | Run |
+|---|---|
+| Check a log for problems (any log rate) | `fc_log_analysis("logs/my_flight.bin")` |
+| Get a new tune, with a GUI | `fc_tuner_app` |
+| Get a new tune from a script | `out = fc_tune_from_log("logs/my_flight.bin")` |
+| Simulate my drone and compare tunes | `run_sim` (uses the newest log in `logs/`) |
+| See the physics model validated, no log needed | `validate_physics` (in `bench/`) |
+| Test on SITL or real hardware | see [Bring your own](#bring-your-own) and `hil/HIL_RUNBOOK.md` |
+
+**Windows launcher (optional):** `launcher/build_launcher.bat` builds a small `FC Tuner.exe` that opens the tuner without the MATLAB desktop. `Open_FC_Tuner.bat` does the same without building anything.
+
+### If something stops
+
+Every tool stops with a message saying what's missing. The common ones:
+
+| Message | What to do |
+|---|---|
+| *"Rate data was logged at only 10 Hz…"* | The log is too slow for tuning. Set `LOG_BITMASK = 180223` and fly again. The health check still works on it. |
+| *"No flight logs found in …/logs"* | Copy a `.BIN` into `logs/`, or pass a file name. |
+| *"…fleet.mat not found. This script replays the original test campaign…"* | That script reproduces the author's own campaign, whose logs aren't included. Use `fc_tune_from_log` / `fc_tuner_app` for your aircraft. |
+| *"Unrecognized function or variable 'ardupilotreader'"* | Install UAV Toolbox. |
+| *"V8 skipped: … not found"* | Optional check; see [Bring your own](#bring-your-own). |
 
 ## What's inside
 
